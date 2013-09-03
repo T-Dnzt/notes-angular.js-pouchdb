@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app="myApp">
+	<head>
+	    <meta charset="utf-8">
+	    <title>Angular.js & PouchDB</title>
+
+	    <link rel="stylesheet" href="style.css">
+
+	</head>
+	<body class='ng-cloak' ng-controller="MainCtrl">
+
+		<div>
+			Title : <input ng-model="tweet.author"/>
+			Note : <input ng-model="tweet.content"/>
+			<button ng-click="add(tweet)">Save</button>
+			<button ng-click="deleteAll()">Delete notes</button>
+		</div>
+
+		<h1 class='tac' ng-if="tweets.length == 0">No note yet !</h1>
+
+		<ul ng-if="tweets.length > 0">
+			<li ng-repeat="tweet in tweets" class='note'>
+				<h1 class="title">{{tweet.author}}</h1>
+				<br/>
+				<p>{{tweet.content}}</p>
+			</li>
+		</ul>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script src="http://download.pouchdb.com/pouchdb-nightly.min.js"></script>
+		<script src="db.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

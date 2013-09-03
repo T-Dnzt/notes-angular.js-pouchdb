@@ -1,0 +1,7 @@
+.ng-cloak { display: none !important; }
+ul { list-style-type: none; }
+li { border-bottom: 1px solid black; padding: 10px; }
+p { margin: 0; }
+.tac { text-align: center; }
+.note { margin: 5px 10px; border: 1px solid black; width: 150px; height: 200px; float: left;}
+.title { text-align: center; margin: 0; border-bottom: 1px solid black; }
