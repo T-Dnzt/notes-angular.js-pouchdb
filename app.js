@@ -3,6 +3,8 @@ var app = angular.module('myApp', ['pouchDB']);
 app.controller('MainCtrl', ['$scope', 'notes', '$rootScope', 'notesListener', 
 	function($scope, notes, $rootScope, notesListener) {
 
+		$scope.notes = [];
+
 		$scope.add = function(note) {
 			notes.create(note).then(function(result) {
 				$scope.note = null;
@@ -21,19 +23,20 @@ app.controller('MainCtrl', ['$scope', 'notes', '$rootScope', 'notesListener',
 			});
 		}
 
-		$rootScope.$on('newNote', function(event, data) {
-			$scope.notes.push(data)
+		// Listener on newNote event sent by pouchDB changes method.
+		$rootScope.$on('newNote', function(event, note) {
+			$scope.notes.push(note)
 		});
 
-		$rootScope.$on('deletedNote', function(event, data) {
-			$scope.notes.splice(data)
+		// Listener on deleteNote snet by pouchDB changes method.
+		$rootScope.$on('deletedNote', function(event, note) {
+			$scope.notes.splice(note)
 		});
 
 		notes.all().then(function(results) {
 			angular.forEach(results, function(result) {
-				result = result.doc;
+				$scope.notes.push(result.doc);
 			});
-			$scope.notes = results;
 		}, function(error) {
 			$scope.notes = [];
 		});
