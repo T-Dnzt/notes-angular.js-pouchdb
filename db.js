@@ -44,9 +44,7 @@ db.service('notes', ['notesDB', '$q', '$rootScope',
 
 		this.get = function(id) {
 			var d = $q.defer();
-			console.log(notesDB)
 			notesDB.get(id, function(err, result) {
-				console.log(result)
 				!err ? d.resolve(result) : d.reject(err)
 			});
 			return d.promise;
@@ -54,9 +52,7 @@ db.service('notes', ['notesDB', '$q', '$rootScope',
 
 		this.create = function(note) {
 			var d = $q.defer();
-			console.log(notesDB)
 			notesDB.put(_this.build(note), function(err, result) {
-				console.log(result)
 				!err ? d.resolve(result) : d.reject(err)
 			});
 			return d.promise;
